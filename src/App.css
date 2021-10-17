@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -36,4 +42,8 @@
 
 .nav__btn:hover {
   color: #FDBF5A;;
+}
+
+.app-wrapper .main{
+  flex: 1;
 }

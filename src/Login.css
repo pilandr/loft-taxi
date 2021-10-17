@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+.login-wrapper {
+  height: 100%;
+  position: relative;
+}
+
 .login {
   width: 580px;
   padding: 56px 112px;
@@ -14,6 +19,10 @@
   font-style: normal;
   font-weight: bold;
   color: #000000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .form {
