@@ -4,37 +4,19 @@ import { Map } from './Map';
 import { LoginWithAuth } from './Login';
 import { ProfileWithAuth } from './Profile';
 import Register from './Register';
+import { PrivateRoute } from './PrivateRoute';
 import logo from './logo.png'
-import { withAuth } from './AuthContext';
-
-
-const PAGES = {
-  map: Map,
-  login: LoginWithAuth,
-  profile: ProfileWithAuth,
-  register: Register
-}
+import { connect } from 'react-redux';
+import { logOut } from './actions';
+import { Link, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component {
 
-  state = { currentPage: "login"}
-
-  navigateTo = (page) => {
-    if (this.props.isLoggedIn || page === "register") {
-      this.setState({ currentPage: page })
-    }else {
-      this.setState({ currentPage: "login" })
-    }
-  }
-
   onLogout = () => {
     this.props.logOut();
-    this.navigateTo("login");
   }
 
   render() {
-
-    const Page = PAGES[this.state.currentPage];
 
     return ( <>
       <div className="app-wrapper">
@@ -45,20 +27,25 @@ class App extends React.Component {
           <nav className="nav">
             <ul className="nav__list">
               <li className="nav__item">
-                <button className="nav__btn" onClick = {() => {this.navigateTo("map")}}>Карта</button>
+                <Link className="nav__btn" to="/map">Карта</Link>
               </li>
               <li className="nav__item">
-              <button className="nav__btn" onClick = {() => {this.navigateTo("profile")}}>Профиль</button>
+                <Link className="nav__btn" to="/profile">Профиль</Link>
               </li>
               <li className="nav__item">
-                <button className="nav__btn" onClick = {this.onLogout}>Выйти</button>
+                <Link className="nav__btn" onClick = {this.onLogout} to="/">Выйти</Link>
               </li>
             </ul>
           </nav>
         </header>
         <main>
           <section> 
-            <Page setPage={this.navigateTo} />
+            <Switch>
+              <Route exact path="/" component={LoginWithAuth} />
+              <Route exact path="/register" component={Register} />
+              <PrivateRoute path="/map" component={Map} />
+              <PrivateRoute path="/profile" component={ProfileWithAuth} />
+            </Switch>
           </section>
         </main>
       </div>
@@ -68,4 +55,7 @@ class App extends React.Component {
   
 }
 
-export default withAuth(App);
+export default connect(
+  state => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { logOut }
+)(App);
