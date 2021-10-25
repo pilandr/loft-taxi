@@ -1,14 +1,10 @@
 import React from "react";
 import './Login.css';
-import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import { authenticate } from './actions'
 import { Link, Redirect } from 'react-router-dom';
 
 class Login extends React.Component {
-  static propTypes = {
-    setPage: PropTypes.func
-  }
   
   onLogin = (e) => {
     e.preventDefault();
@@ -16,14 +12,8 @@ class Login extends React.Component {
     this.props.authenticate(email.value, password.value);
   }
 
-  // onReg = () => {
-  //   this.props.setPage("register");
-  // }
-
   render() {
-    // if (this.props.isLoggedIn) {
-    //   this.props.setPage("map");
-    // }
+
     return ( <>
       {this.props.isLoggedIn ? (
         <Redirect to="/map" />

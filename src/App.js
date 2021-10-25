@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Map } from './Map';
+import { MapStore as Map } from './Map';
 import { LoginWithAuth } from './Login';
 import { ProfileWithAuth } from './Profile';
 import Register from './Register';
