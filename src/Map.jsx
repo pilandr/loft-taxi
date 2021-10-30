@@ -1,11 +1,9 @@
 import React from "react";
 import mapboxgl from 'mapbox-gl';
-import PropTypes from "prop-types";
+import { getCard } from './actions'
+import { connect } from 'react-redux';
 
-export class Map extends React.Component {
-  static propTypes = {
-    setPage: PropTypes.func
-  }
+class Map extends React.Component {
 
   map = null
   mapContainer = React.createRef();
@@ -19,6 +17,8 @@ export class Map extends React.Component {
       center: [30.3056504, 59.9429126], // LED
       zoom: 10,
     })
+
+    this.props.getCard();
   }
 
   componentWillUnmount() {
@@ -33,3 +33,8 @@ export class Map extends React.Component {
     )
   }
 }
+
+export const MapStore = connect(
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn}),
+  { getCard }
+)(Map);
