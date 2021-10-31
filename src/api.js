@@ -13,6 +13,32 @@ export const serverLogin = async (email, password) => {
     .then((data) => ({ success: data.success, token: data.token }));
 };
 
+export const serverRegister = async (email, password, name, surname) => {
+  const body = {
+    email: email,
+    password: password,
+    name: name,
+    surname: surname,
+  };
+
+  return fetch("https://loft-taxi.glitch.me/register", {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => ({ success: data.success, token: data.token }));
+};
+
+
+export const getAddresses = async () => {
+
+  console.log('getAddresses api');
+  return fetch("https://loft-taxi.glitch.me/addressList")
+    .then((response) => response.json())
+    .then((data) => ({...data, success: true}));
+};
+
 export const updateCard = async (
   cardNumber,
   expiryDate,

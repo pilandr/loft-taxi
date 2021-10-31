@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SAVE_TO_STORE_CARD } from "../actions"
+import { LOG_IN, LOG_OUT, SAVE_TO_STORE_CARD, CARD_UPDATED_TO_FALSE_STORE, SAVE_ADDRESS_LIST } from "../actions"
 
 const token = localStorage.getItem("token");
 
@@ -8,14 +8,18 @@ const initialState = {
     cardName: "",
     cardNumber: "",
     expiryDate: "",
-    cvc: ""
+    cvc: "",
+    updated: false
   }
 }
 
 export default function foo(state = initialState, action) {
   switch (action.type) {
     case LOG_IN: {
-      return { isLoggedIn: true }
+      return { 
+        ...state,
+        isLoggedIn: true 
+      }
     }
     case LOG_OUT: {
       return { isLoggedIn: false }
@@ -27,8 +31,24 @@ export default function foo(state = initialState, action) {
           cardName: action.payload.cardName,
           cardNumber: action.payload.cardNumber,
           expiryDate: action.payload.expiryDate,
-          cvc: action.payload.cvc
+          cvc: action.payload.cvc,
+          updated: true
       } }
+    }
+    case CARD_UPDATED_TO_FALSE_STORE: {
+      return {
+        ...state,
+        card: {
+          ...state.card,
+          updated: false
+        }
+      }
+    }
+    case SAVE_ADDRESS_LIST: {
+      return {
+        ...state,
+        addresses: action.payload
+      }
     }
     default: {
       return state

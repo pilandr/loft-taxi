@@ -3,9 +3,9 @@ import './App.css';
 import { MapStore as Map } from './Map';
 import { LoginWithAuth } from './Login';
 import { ProfileWithAuth } from './Profile';
-import Register from './Register';
+import { RegisterWithAuth } from './Register';
 import { PrivateRoute } from './PrivateRoute';
-import logo from './logo.png'
+import logo from './img/logo.png'
 import { connect } from 'react-redux';
 import { logOut } from './actions';
 import { Link, Switch, Route } from 'react-router-dom';
@@ -42,7 +42,7 @@ class App extends React.Component {
           <section> 
             <Switch>
               <Route exact path="/" component={LoginWithAuth} />
-              <Route exact path="/register" component={Register} />
+              <Route exact path="/register" component={RegisterWithAuth} />
               <PrivateRoute path="/map" component={Map} />
               <PrivateRoute path="/profile" component={ProfileWithAuth} />
             </Switch>
