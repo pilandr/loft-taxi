@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SAVE_TO_STORE_CARD, CARD_UPDATED_TO_FALSE_STORE, SAVE_ADDRESS_LIST } from "../actions"
+import { LOG_IN, LOG_OUT, SAVE_TO_STORE_CARD, CARD_UPDATED_TO_FALSE_STORE, SAVE_ADDRESS_LIST, GET_ROUTE } from "../actions"
 
 const token = localStorage.getItem("token");
 
@@ -48,6 +48,12 @@ export default function foo(state = initialState, action) {
       return {
         ...state,
         addresses: action.payload
+      }
+    }
+    case GET_ROUTE: {
+      return {
+        ...state,
+        routes: action.payload.route
       }
     }
     default: {

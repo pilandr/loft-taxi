@@ -5,7 +5,6 @@ import { getAddresses } from '../api';
 export function* addressesSaga(action) {
   const { success, addresses } = yield call(getAddresses)
   if (success) {
-    console.log(addresses);
     yield put(saveAddressList(addresses))
   }
 }
