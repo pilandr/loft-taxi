@@ -14,6 +14,7 @@ export const ADDRESS_LIST = "ADDRESS_LIST";
 export const SAVE_ADDRESS_LIST = "SAVE_ADDRESS_LIST"; 
 export const GET_ROUTE_SAGA = " GET_ROUTE_SAGA"; 
 export const GET_ROUTE = "GET_ROUTE"; 
+export const NOT_ROUTE = "NOT_ROUTE"; 
 
 export const logIn = () => ({ type: LOG_IN })
 export const logOut = () => ({ type: LOG_OUT })
@@ -31,7 +32,8 @@ export const addressList = () => ({ type: ADDRESS_LIST})
 export const saveAddressList = (list) => ({ type: SAVE_ADDRESS_LIST, payload: list})
 
 export const getRouteSaga = (address1, address2, map) => ({ type: GET_ROUTE_SAGA, payload: { address1, address2, map } })
-export const getRoute = (route) => ({ type: GET_ROUTE, payload: { route } })
+export const getRoute = () => ({ type: GET_ROUTE })
+export const notRoute = () => ({ type: NOT_ROUTE })
 
 
 

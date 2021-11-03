@@ -18,6 +18,7 @@ export class Profile extends React.Component {
 
   handleNameChange = event => {
     this.setState({ card: {
+      ...this.state.card,
       cardName: event.target.value
     }});
   };
@@ -26,6 +27,7 @@ export class Profile extends React.Component {
     if (event.target.selectionEnd === 5 || event.target.selectionEnd === 10 || event.target.selectionEnd === 15) event.target.value += " ";
     if (event.target.selectionEnd === 21) return
     this.setState({ card: {
+      ...this.state.card,
       cardNumber: event.target.value
     }});
   };
@@ -34,6 +36,7 @@ export class Profile extends React.Component {
     if (event.target.selectionEnd === 2) event.target.value += "/";
     if (event.target.selectionEnd === 6) return
     this.setState({ card: {
+      ...this.state.card,
       expiryDate: event.target.value
     }});
   };
@@ -41,6 +44,7 @@ export class Profile extends React.Component {
   handleCVCChange = event => {
     if (event.target.selectionEnd > 3 ) return
     this.setState({ card: {
+      ...this.state.card,
       cvc: event.target.value
     }});
   };

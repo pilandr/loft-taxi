@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SAVE_TO_STORE_CARD, CARD_UPDATED_TO_FALSE_STORE, SAVE_ADDRESS_LIST, GET_ROUTE } from "../actions"
+import { LOG_IN, LOG_OUT, SAVE_TO_STORE_CARD, CARD_UPDATED_TO_FALSE_STORE, SAVE_ADDRESS_LIST, GET_ROUTE, NOT_ROUTE } from "../actions"
 
 const token = localStorage.getItem("token");
 
@@ -10,7 +10,9 @@ const initialState = {
     expiryDate: "",
     cvc: "",
     updated: false
-  }
+  },
+  routes: false,
+  addresses: []
 }
 
 export default function foo(state = initialState, action) {
@@ -22,7 +24,10 @@ export default function foo(state = initialState, action) {
       }
     }
     case LOG_OUT: {
-      return { isLoggedIn: false }
+      return { 
+        ...state,
+        isLoggedIn: false 
+      }
     }
     case SAVE_TO_STORE_CARD: {
       return { 
@@ -53,7 +58,13 @@ export default function foo(state = initialState, action) {
     case GET_ROUTE: {
       return {
         ...state,
-        routes: action.payload.route
+        routes: true
+      }
+    }
+    case NOT_ROUTE: {
+      return {
+        ...state,
+        routes: false
       }
     }
     default: {

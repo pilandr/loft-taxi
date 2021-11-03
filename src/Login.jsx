@@ -12,6 +12,10 @@ class Login extends React.Component {
     this.props.authenticate(email.value, password.value);
   }
 
+  componentDidMount () {
+    
+  }
+
   render() {
 
     return ( <>
@@ -40,5 +44,5 @@ class Login extends React.Component {
 
 export const LoginWithAuth = connect(
   (state) => ({ isLoggedIn: state.auth.isLoggedIn}),
-  { authenticate }
+  { authenticate}
 )(Login);

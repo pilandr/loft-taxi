@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import { AUTHENTICATE, logIn } from '../actions'
+import { AUTHENTICATE, logIn, addressList } from '../actions'
 import { serverLogin } from '../api';
 
 export function* authenticateSaga(action) {
@@ -8,6 +8,7 @@ export function* authenticateSaga(action) {
   if (success) {
     yield put(logIn())
     localStorage.setItem("token", token);
+    yield call(addressList);
   }
 }
 
