@@ -106,6 +106,10 @@
   font-size: 18px;
 }
 
+.input__register {
+  margin-bottom: 25px;
+}
+
 .form-profile__input {
   width: 355px;
   margin-bottom: 25px;

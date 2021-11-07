@@ -3,43 +3,77 @@ import './Register.css';
 import { connect } from 'react-redux';
 import { register } from './actions';
 import { Link, Redirect } from 'react-router-dom';
+import { Form, Field } from "react-final-form";
+
+const InputRegister = ({ input, meta, label, name, typeReg, placeholder, classNameReg }) => {
+  return (
+    <>
+    <label className="form__lbl" htmlFor={name}>{label}</label>
+    <input {...input} className="input input__register" id={name} type={typeReg} name={name} placeholder={placeholder} size="28" />
+      {meta.error && meta.visited && !meta.active && (
+        <pre className="input__error--email">{meta.error}</pre>
+      )}
+    </>
+  );
+};
 
 class Register extends React.Component {
 
-  onReg = (e) => {
-    e.preventDefault();
-    const { email, password, name } = e.target;
-    this.props.register(email.value, password.value, name.value);
+  onSubmit = (values, functions) => {
+    console.log(values);
+    const { email, password, username } = values;
+    this.props.register(email, password, username);
+  }
+
+  validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Заполните email ";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Некорректный email';
+    }
+
+    if (!values.password) {
+      errors.password = "Заполните пароль ";
+    }
+
+    if (!values.username) {
+      errors.username = "Заполните имя ";
+    }
+    return errors;
   }
 
   render() {
-    return ( <>
-    {this.props.isLoggedIn ? (
+    return (<>
+      {this.props.isLoggedIn ? (
         <Redirect to="/map" />
-        ) : (
-              <div className="login-wrapper">
-                <div className="login">
-                  <form className="form" onSubmit={this.onReg}>
-                    <div className="form__title">Регистрация</div>
-                    <label className="form__lbl" htmlFor="email">Email*</label>
-                    <input className="input" id="email" type="email" name="email" placeholder="mail@mail.ru" size="28" />
-                    <label className="form__lbl" htmlFor="username">Как вас зовут?*</label>
-                    <input className="input" id="username" type="text" name="name" placeholder="Петр Александрович" size="60" />
-                    <label className="form__lbl" htmlFor="password">Придумайте пароль*</label>
-                    <input className="input" id="password" type="password" name="password" placeholder="*************" size="28" />
-                    <input className="form__submit" type="submit" value="Зарегистрироваться" />
-                  </form>
-                  <div className="login__new">Уже зарегистрированы? <Link to="/" className="login__new-btn">Войти</Link></div>
-                </div>
-              </div>
-            )}        
-      </>
+      ) : (
+        <div className="login-wrapper">
+          <div className="login">
+            <Form
+              onSubmit={this.onSubmit}
+              validate={this.validate}
+              render={({ handleSubmit, pristine, invalid }) => (
+                <form className="form" onSubmit={handleSubmit}>
+                  <div className="form__title">Регистрация</div>
+                  <Field className="input" name="email" typeReg="email" placeholder="mail@mail.ru" component={InputRegister} label="Email*" />
+                  <Field name="username" typeReg="text" placeholder="Петр Александрович" component={InputRegister} label="Как вас зовут?*" />
+                  <Field name="password" typeReg="password" placeholder="*************" component={InputRegister} label="Придумайте пароль*" />
+                  <input className="form__submit" type="submit" value="Зарегистрироваться" />
+                </form>
+              )}
+            />
+            <div className="login__new">Уже зарегистрированы? <Link to="/" className="login__new-btn">Войти</Link></div>
+          </div>
+        </div>
+      )}
+    </>
     );
   }
-  
+
 }
 
 export const RegisterWithAuth = connect(
-  (state) => ({ isLoggedIn: state.auth.isLoggedIn}),
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
   { register }
 )(Register);
