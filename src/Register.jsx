@@ -5,11 +5,11 @@ import { register } from './actions';
 import { Link, Redirect } from 'react-router-dom';
 import { Form, Field } from "react-final-form";
 
-const InputRegister = ({ input, meta, label, name, typeReg, placeholder, classNameReg }) => {
+const InputRegister = ({ input, meta, label, nameReg, typeReg, placeholder, classNameReg }) => {
   return (
     <>
-    <label className="form__lbl" htmlFor={name}>{label}</label>
-    <input {...input} className="input input__register" id={name} type={typeReg} name={name} placeholder={placeholder} size="28" />
+    <label className="form__lbl" htmlFor={nameReg}>{label}</label>
+    <input {...input} className="input input__register" id={nameReg} type={typeReg} name={nameReg} placeholder={placeholder} size="28" />
       {meta.error && meta.visited && !meta.active && (
         <pre className="input__error--email">{meta.error}</pre>
       )}
@@ -56,9 +56,9 @@ class Register extends React.Component {
               render={({ handleSubmit, pristine, invalid }) => (
                 <form className="form" onSubmit={handleSubmit}>
                   <div className="form__title">Регистрация</div>
-                  <Field className="input" name="email" typeReg="email" placeholder="mail@mail.ru" component={InputRegister} label="Email*" />
-                  <Field name="username" typeReg="text" placeholder="Петр Александрович" component={InputRegister} label="Как вас зовут?*" />
-                  <Field name="password" typeReg="password" placeholder="*************" component={InputRegister} label="Придумайте пароль*" />
+                  <Field className="input" name="email" nameReg="email" typeReg="email" placeholder="mail@mail.ru" component={InputRegister} label="Email*" />
+                  <Field name="username" nameReg="username" typeReg="text" placeholder="Петр Александрович" component={InputRegister} label="Как вас зовут?*" />
+                  <Field name="password" nameReg="password" typeReg="password" placeholder="*************" component={InputRegister} label="Придумайте пароль*" />
                   <input className="form__submit" type="submit" value="Зарегистрироваться" />
                 </form>
               )}
