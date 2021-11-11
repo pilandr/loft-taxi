@@ -5,7 +5,7 @@ import { register } from './actions';
 import { Link, Redirect } from 'react-router-dom';
 import { Form, Field } from "react-final-form";
 
-const InputRegister = ({ input, meta, label, nameReg, typeReg, placeholder, classNameReg }) => {
+const InputRegister = ({ input, meta, label, nameReg, typeReg, placeholder}) => {
   return (
     <>
     <label className="form__lbl" htmlFor={nameReg}>{label}</label>

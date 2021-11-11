@@ -1,6 +1,6 @@
 import React from "react";
 import { RegisterWithAuth } from "./Register";
-import { render } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
