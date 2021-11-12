@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { authenticate } from './actions'
 import { Link, Redirect } from 'react-router-dom';
 import { Form, Field } from "react-final-form";
+import logo_login from './img/logo_login.svg'
+
 
 const InputEmail = ({ input, meta, label }) => {
   return (
@@ -69,22 +71,30 @@ class Login extends React.Component {
         <Redirect to="/map" />
       ) : (
         <div className="login-wrapper">
-          <div className="login">
-            <Form
-              onSubmit={this.onSubmit}
-              validate={this.validate}
-              render={({ handleSubmit, pristine, invalid }) => (
-                <form className="form" onSubmit={handleSubmit}>
-                  <div className="form__title">Войти</div>
-                  <Field name="email" label="Email" component={InputEmail} />
-                  <Field name="password" label="Пароль" component={InputPassword} />
-                  <div className="form__forget-pass">Забыли пароль?</div>
-                  <Field name="submit" component={InputSubmit} />
-                </form>
-              )}
-            />
-
-            <div className="login__new">Новый пользователь? <Link to="/register" className="login__new-btn">Регистрация</Link></div>
+          <div className="login-inner">
+            <div className="login-inner__left">
+              <div className="logo-container">
+                <img className="logo-img" src={logo_login} alt="logo img" />
+              </div>
+            </div>
+            <div className="login-inner__right">
+              <div className="login">
+                <Form
+                  onSubmit={this.onSubmit}
+                  validate={this.validate}
+                  render={({ handleSubmit, pristine, invalid }) => (
+                    <form className="form" onSubmit={handleSubmit}>
+                      <div className="form__title">Войти</div>
+                      <Field name="email" label="Email" component={InputEmail} />
+                      <Field name="password" label="Пароль" component={InputPassword} />
+                      <div className="form__forget-pass">Забыли пароль?</div>
+                      <Field name="submit" component={InputSubmit} />
+                    </form>
+                  )}
+                />
+                <div className="login__new">Новый пользователь? <Link to="/register" className="login__new-btn">Регистрация</Link></div>
+              </div>
+            </div>
           </div>
         </div>
       )}

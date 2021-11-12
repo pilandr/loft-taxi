@@ -17,10 +17,10 @@ class App extends React.Component {
   }
 
   render() {
-
     return ( <>
       <div className="app-wrapper">
-        <header className="header">
+        { this.props.isLoggedIn ? (
+          <header className="header">
           <div className="logo">
             <img className="logo__pic" src={logo} alt={"logo"}/> 
           </div>
@@ -38,6 +38,8 @@ class App extends React.Component {
             </ul>
           </nav>
         </header>
+        ) : (null)}
+        
         <main>
           <section> 
             <Switch>

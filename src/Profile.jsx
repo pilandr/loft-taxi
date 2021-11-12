@@ -26,6 +26,7 @@ export class Profile extends React.Component {
 
   onSubmit = (values, functions) => {
     const { name, number, date, cvc } = values;
+    console.log( name, number, date, cvc);
     this.props.saveCard({
       cardName: name,
       cardNumber: number,

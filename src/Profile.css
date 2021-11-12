@@ -8,6 +8,8 @@
 .profile-wrapper {
   height: 100%;
   position: relative;
+  background: linear-gradient(0deg, rgba(28, 26, 25, 0.5), rgba(28, 26, 25, 0.5)), url(./img/bigmap.jpg);
+  /* background-image: url(./img/bigmap.jpg); */
 }
 
 .profile {
