@@ -3,8 +3,8 @@ import { AUTHENTICATE, logIn, addressList } from '../actions'
 import { serverLogin } from '../api';
 
 export function* authenticateSaga(action) {
-  const { email, password, name, surname } = action.payload;
-  const { success, token } = yield call(serverLogin, email, password, name, surname)
+  const { email, password} = action.payload;
+  const { success, token } = yield call(serverLogin, email, password)
   if (success) {
     yield put(logIn())
     localStorage.setItem("token", token);

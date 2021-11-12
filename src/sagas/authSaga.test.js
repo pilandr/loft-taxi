@@ -1,24 +1,27 @@
-import { addressesSaga } from "./addressListSaga";
-import { addressList } from "../actions";
+import { authenticateSaga } from "./authSaga";
+import { authenticate } from "../actions";
 import { recordSaga } from "./recordSaga";
 
-jest.mock("../api", () => ({ getAddresses: jest.fn(() => ({ success: true, addresses: [1, 2] }))}));
+jest.mock("../api", () => {
+  const original = jest.requireActual("../api"); 
+  return {
+      ...original,
+      serverLogin:() => ({ success: true, token: "token1" }),
+  };
+});
 
-describe("addressesSaga", () => {
-  describe("#ADDRESS_LIST", () => {
-    it("addresses through api", async () => {
+describe("authSaga", () => {
+  describe("#AUTHENTICATE", () => {
+    it("authenticate through api", async () => {
       const dispatched = await recordSaga(
-        addressesSaga,
-        addressList()
+        authenticateSaga,
+        authenticate("test@test.com", "123123")
       );
       expect(dispatched).toEqual([
+        {
+          type: "LOG_IN"
+        }
       ]);
     });
   });
 });
-
-// {
-//   type: "SAVE_ADDRESS_LIST", payload: [1, 2]
-// }
-
-// 
