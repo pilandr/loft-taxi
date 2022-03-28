@@ -7,7 +7,29 @@
 .login-wrapper {
   height: 100%;
   position: relative;
+  background-image: url("./img/bigmap.jpg");
 }
+
+.login-inner {
+  display: flex;
+  height: 100%;
+}
+
+.login-inner__left {
+  flex-basis: 485px;
+  min-width: 200px;
+  background: #1C1A19;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-inner__right {
+  position: relative;
+  flex: 1;
+  min-width: 580px;
+}
+
 
 .login {
   width: 580px;
@@ -66,6 +88,20 @@
 
 #password {
   margin-bottom: 13px;
+}
+
+.input__error--email {
+  margin-top: -20px;
+  color: #FF0000;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.input__error--password {
+  margin-top: -10px;
+  color: #FF0000;
+  font-size: 12px;
+  line-height: 14px;
 }
 
 .form__forget-pass {

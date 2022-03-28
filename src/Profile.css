@@ -8,6 +8,8 @@
 .profile-wrapper {
   height: 100%;
   position: relative;
+  background: linear-gradient(0deg, rgba(28, 26, 25, 0.5), rgba(28, 26, 25, 0.5)), url(./img/bigmap.jpg);
+  /* background-image: url(./img/bigmap.jpg); */
 }
 
 .profile {
@@ -104,6 +106,21 @@
   color: #828282;
   font-weight: normal;
   font-size: 18px;
+}
+
+.input__register {
+  margin-bottom: 25px;
+}
+
+.input__error--name, .input__error--number {
+  color: red;
+  margin-top: -20px;
+  font-size: 12px;
+}
+.input__error--date, .input__error--cvc {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
 }
 
 .form-profile__input {

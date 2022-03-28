@@ -122,7 +122,7 @@ export const drawRoute = (map, coordinates) => {
   });
 };
 
-export function* getRouteSaga(action) {
+export function* routeDrawSaga(action) {
   const routesServer = yield call(getRouteServer, action.payload.address1, action.payload.address2)
   if (routesServer.success) {
     yield call(drawRoute, action.payload.map, routesServer.route)
@@ -131,5 +131,5 @@ export function* getRouteSaga(action) {
 }
 
 export function* routeSaga() {
-  yield takeEvery(GET_ROUTE_SAGA, getRouteSaga)
+  yield takeEvery(GET_ROUTE_SAGA, routeDrawSaga)
 }
