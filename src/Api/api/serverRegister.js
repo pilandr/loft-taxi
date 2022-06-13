@@ -6,11 +6,11 @@ export const serverRegister = async (email, password, name, surname) => {
     surname: surname,
   };
 
-  return fetch("https://loft-taxi.glitch.me/register", {
-    method: "POST",
+  return fetch('https://loft-taxi.glitch.me/register', {
+    method: 'POST',
     body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json" },
+    headers: { 'Content-Type': 'application/json' },
   })
     .then((response) => response.json())
-    .then((data) => ({ success: data.success, token: data.token }));
+    .then((data) => ({ success: data.success, token: data.token, error: data.error }));
 };

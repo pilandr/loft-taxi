@@ -1,0 +1,42 @@
+.lbl {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #828282;
+  margin-bottom: 10px;
+}
+
+.input {
+  outline: none;
+  border: none;
+  border-bottom: 2px solid #E4E4E4;
+  background: none;
+  font-size: 21px;
+  color: #000000;
+  padding: 6px 0 7px;
+}
+
+.input::placeholder {
+  color: #828282;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.inputErrorName, .inputErrorNumber {
+  color: red;
+  margin-top: -20px;
+  font-size: 12px;
+}
+.inputErrordate, .inputErrorCvc {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.preClass {
+
+}
+
+.input + .preClass {
+  color: red;
+}

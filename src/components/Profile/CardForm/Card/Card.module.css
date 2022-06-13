@@ -1,0 +1,32 @@
+.card {
+  background: #FFFFFF;
+  box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 18px 16px 16px 28px;
+  width: 348px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.rowNumber {
+  margin-bottom: 35px;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 25px;
+  color: #000000;
+}
+
+.rowIcons {
+  margin: 0;
+}
+
+.date {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+}

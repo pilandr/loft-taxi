@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1C1A19;
+  height: 100px;
+}
+
+.wrapper .main{
+  flex: 1;
+}
+
+.hamburger {
+  display: none;
+  margin-right: 5px;
+}
+
+@media screen and (max-width: 767px) {
+  .navMenu {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    padding-top: 10px;
+    margin-left: 10px;
+    z-index: 6;
+  }
+}
